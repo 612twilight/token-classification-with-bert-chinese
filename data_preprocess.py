@@ -48,7 +48,10 @@ def preprocess_data(data_dir, model_name_or_path=bert_base_chinese_model_dir, ma
                     continue
 
                 token = line.split()[0]
-                label = line.split()[1]
+                if len(line.split()) < 2:
+                    label = "O"
+                else:
+                    label = line.split()[1]
 
                 current_subwords_len = len(tokenizer.tokenize(token))
 
